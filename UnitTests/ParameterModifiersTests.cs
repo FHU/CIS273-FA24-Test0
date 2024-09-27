@@ -5,11 +5,6 @@ namespace UnitTests
     [TestClass]
     public class ParameterModifiersTests
     {
-        // UNIT TESTS ARE UNFINISHED!
-
-        // Questions:
-        // Maybe add a test that checks if the input has a first or last name?
-
         [TestMethod]
         public void TestSplitNameIntoPartsTitle()
         {
@@ -224,10 +219,10 @@ namespace UnitTests
             Program.SplitNameIntoParts(input, out title, out first, out middle, out last, out suffix);
             Assert.AreEqual("T.", middle);
 
-            input = "Brother Pavitr S. Prabhakar";
+            input = "Brother Pavitr Prabhakar";
             first = null; middle = null; last = null; title = null; suffix = null;
             Program.SplitNameIntoParts(input, out title, out first, out middle, out last, out suffix);
-            Assert.AreEqual("S.", middle);
+            Assert.AreEqual("", middle);
 
             input = "Mr. Aaron Davis, Sr.";
             first = null; middle = null; last = null; title = null; suffix = null;
@@ -238,11 +233,37 @@ namespace UnitTests
         [TestMethod]
         public void TestReverseInPlace()
         {
-            // I'm not exactly sure how to write out this test. Void is a nightmare to work with.
+            string s = "Papyrus is not a good font.";
+            Program.ReverseInPlace(ref s);
+            Assert.AreEqual(".tnof doog a ton si surypaP", s);
 
-            //string s = "Papyrus is not a good font.";
-            //Program.ReverseInPlace(s);
-            //Assert.AreEqual(".tnof doog a ton si surypaP", Program.ReverseInPlace(s));
+            s = "Racecar";
+            Program.ReverseInPlace(ref s);
+            Assert.AreEqual("racecaR", s);
+
+            s = "";
+            Program.ReverseInPlace(ref s);
+            Assert.AreEqual("", s);
+
+            s = "    ";
+            Program.ReverseInPlace(ref s);
+            Assert.AreEqual("    ", s);
+
+            s = "o";
+            Program.ReverseInPlace(ref s);
+            Assert.AreEqual("o", s);
+
+            s = "!@#$123%^";
+            Program.ReverseInPlace(ref s);
+            Assert.AreEqual("^%321$#@!", s);
+
+            s = "aBcDeFgHi";
+            Program.ReverseInPlace(ref s);
+            Assert.AreEqual("iHgFeDcBa", s);
+
+            s = null;
+            Program.ReverseInPlace(ref s);
+            Assert.AreEqual(null, s);
         }
     }
 }
